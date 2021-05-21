@@ -28,14 +28,17 @@
 
         }
 
-        $(document).ready(function () {
-            doSelect();
-        })
-        function button2Pressed() {
-            doSelect();
-        }
+        
+        
 
-        async function doSelect() {
+        
+
+        $(document).ready(function (){
+            x = 0;
+            setInterval(doCount, 2000);
+        });
+        async function doCount() {
+            
             var sql = 'select * from Tweets';
             var objects = await osql.connect(sql);
             console.log(objects);
@@ -46,6 +49,7 @@
                 html = html + '<li>' + object.id + ',' + object.name + ',' + object.time + '</li>';
             }
             html = html + '</ul>';
+            x++;
             document.getElementById('result2').innerHTML = html;
 
         }    
@@ -66,7 +70,6 @@
 </body>
 <body>
     <h1>Tweets</h1>
-    <button onclick="button2Pressed()">表示</button>
     <p id="result2"></p>
     
 
