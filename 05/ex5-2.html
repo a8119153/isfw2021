@@ -24,20 +24,29 @@
             tf2.value = "";
             document.getElementById('result').innerHTML = "tweetしました";
 
+            
 
-            var sql = `select * from Tweets where tweet like '%${tweet}%'`;
+        }
+
+        function button2Pressed() {
+            doSelect();
+        }
+
+        async function doSelect() {
+            var sql = 'select * from Tweets';
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
             html = html + '<ul>';
             for (var i = 0; i < objects.length; i++) {
-                var object  = objects[i];
-                html = html + '<li>' + object.id + ',' + object.name + ',' + object.tweet + ',' + object.time + '</li>';
+                var object = objects[i];
+                html = html + '<li>' + object.id + ',' + object.name + ',' + object.time + '</li>';
             }
             html = html + '</ul>';
             document.getElementById('result2').innerHTML = html;
 
-        }
+        }    
+        
     </script>
 
 </head>
@@ -51,7 +60,14 @@
     <button onclick="button1Pressed()">tweet</button>
     <br>
     <p id="result"></p>
-    <p id ="result2"></p>
 </body>
+<body>
+    <h1>Tweets</h1>
+    <button onclick="button2Pressed()">表示</button>
+    <p id="result2"></p>
+    
+
+</body>
+
 
 </html>
